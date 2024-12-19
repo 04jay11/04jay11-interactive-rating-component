@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="output.css" />
+
+    <title>Frontend Mentor | Interactive rating component</title>
+  </head>
+  <body class="grid min-h-screen px-4 bg-very-dark-blue place-content-center">
+    <main class="p-8 max-w-[400px] rounded-2xl bg-dark-blue">
+      <div class="" id="rate-card">
+        <img
+          src="./images/icon-star.svg"
+          class="p-4 mb-8 rounded-full bg-light-grey/10"
+        />
+        <h2 class="mb-3 text-[1.875rem] font-bold text-white">
+          How did we do?
+        </h2>
+        <p class="text-light-grey text-[15px] mb-6">
+          Please let us know how we did with your support request. All feedback
+          is appreciated to help us improve our offering!
+        </p>
+        <ul class="flex justify-between mb-6 font-bold text-light-grey">
+          <li>
+            <button
+              class="flex items-center justify-center w-12 h-12 transition rounded-full bg-light-grey/10 hover:bg-orange hover:text-dark-blue focus:bg-white focus:text-black rate"
+            >
+              1
+            </button>
+          </li>
+          <li>
+            <button
+              class="flex items-center justify-center w-12 h-12 transition rounded-full bg-light-grey/10 hover:bg-orange hover:text-dark-blue focus:bg-white focus:text-black rate"
+            >
+              2
+            </button>
+          </li>
+          <li>
+            <button
+              class="flex items-center justify-center w-12 h-12 transition rounded-full bg-light-grey/10 hover:bg-orange hover:text-dark-blue focus:bg-white focus:text-black rate"
+            >
+              3
+            </button>
+          </li>
+          <li>
+            <button
+              class="flex items-center justify-center w-12 h-12 transition rounded-full bg-light-grey/10 hover:bg-orange hover:text-dark-blue focus:bg-white focus:text-black rate"
+            >
+              4
+            </button>
+          </li>
+          <li>
+            <button
+              class="flex items-center justify-center w-12 h-12 transition rounded-full bg-light-grey/10 hover:bg-orange hover:text-dark-blue focus:bg-white focus:text-black rate"
+            >
+              5
+            </button>
+          </li>
+        </ul>
+        <button
+          id="submit-btn"
+          type="submit"
+          class="w-full py-2 pt-3 font-bold tracking-widest uppercase transition duration-300 rounded-full bg-orange hover:bg-white text-[15px]"
+        >
+          Submit
+        </button>
+      </div>
+
+      <div class="hidden" id="thank-you-card">
+        <img src="./images/illustration-thank-you.svg" class="mx-auto mb-8" />
+
+        <div
+          class="rounded-2xl text-orange bg-light-grey/10 text-[15px] font-normal text-center py-1 w-fit px-6 mx-auto mb-8 pt-2"
+        >
+          You selected <span id="rating"></span> out of 5
+        </div>
+
+        <h2 class="mb-4 text-2xl font-bold text-center text-white">
+          Thank you!
+        </h2>
+        <p class="text-[15px] text-light-grey text-center">
+          We appreciate you taking the time to give a rating. If you ever need
+          more support, don’t hesitate to get in touch!
+        </p>
+        <button
+          id="rate-btn"
+          type="submit"
+          class="w-full pt-3 py-2 font-bold tracking-widest uppercase transition duration-300 rounded-full bg-orange hover:bg-white text-[15px] mt-6"
+        >
+          rate again
+        </button>
+      </div>
+    </main>
+
+    <script>
+      const thankYouCard = document.getElementById("thank-you-card");
+      const submitBtn = document.getElementById("submit-btn");
+      const rateCard = document.getElementById("rate-card");
+      const rateBtn = document.getElementById("rate-btn");
+      const rating = document.querySelector("#rating");
+      const rates = document.querySelectorAll(".rate");
+
+      submitBtn.addEventListener("click", () => {
+        thankYouCard.classList.remove("hidden");
+        rateCard.classList.add("hidden");
+        submitBtn.classList.add("hidden");
+      });
+
+      rates.forEach((rate) => {
+        rate.addEventListener("click", () => {
+          rating.textContent = rate.textContent;
+        });
+      });
+
+      rateBtn.addEventListener("click", () => {
+        thankYouCard.classList.add("hidden");
+        rateCard.classList.remove("hidden");
+        submitBtn.classList.remove("hidden");
+      });
+    </script>
+  </body>
+</html>
